@@ -13,11 +13,6 @@
 #   Check Package:             'Ctrl + Shift + E'
 #   Test Package:              'Ctrl + Shift + T'
 
-install.packages("httr")
-install.packages("rjson")
-library(httr)
-library(rjson)
-
 getDataSet <- function(){
   #  读取api
   res <- GET("localhost:8080/query")

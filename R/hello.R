@@ -13,6 +13,7 @@
 #   Check Package:             'Ctrl + Shift + E'
 #   Test Package:              'Ctrl + Shift + T'
 
+#获取数据集
 getDataSet <- function(){
   #  读取api
   res <- GET("http://39.108.91.24:8099/query")
@@ -28,9 +29,24 @@ getDataSet <- function(){
     return(da)
 }
 
-
+#导出excel
 exportExcel <- function(data){
   url <- getwd()
   write.csv(data,file=paste(url,"data.csv",sep = '/'))
   return('导出成功')
+}
+
+# data:数据集
+# province：地区（省）
+# item：列名（如data中time）
+# name: 列名描述
+# 获取柱状图
+getHistogram<-function(data,province){
+  x<-data
+
+  t<-x[which(x$province==province),]
+
+  ggplot(t, aes(format(as.Date(time),format="%m-%d"), as.numeric(confirmed_num))) +
+    geom_col(fill='firebrick') + theme_minimal(base_size = 14) +
+    xlab(NULL) + ylab(NULL)+ggtitle(paste(province,'确诊数柱状图'))
 }

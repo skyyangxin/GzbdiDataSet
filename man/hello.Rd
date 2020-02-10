@@ -9,5 +9,6 @@ Prints 'Hello, world!'.
 }
 \examples{
 hello(),
-exportExcel(data)
+exportExcel(data),
+getHistogram(data,province)
 }

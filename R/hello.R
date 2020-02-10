@@ -61,7 +61,6 @@ getHistogram <- function(data,province){
   ggplot(t, aes(format(as.Date(time),format="%m-%d"), as.numeric(confirmed_num))) +
     geom_col(fill='firebrick') + theme_minimal(base_size = 14) +
     xlab(NULL) + ylab(NULL)+ggtitle(paste(province,'确诊数柱状图'))
-  return("画图成功")
 }
 
 #' @title initLib

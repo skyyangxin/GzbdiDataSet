@@ -71,4 +71,5 @@ initLib <- function(){
   library(httr)
   library(rjson)
   library(remotes)
+  library(ggplot2)
 }

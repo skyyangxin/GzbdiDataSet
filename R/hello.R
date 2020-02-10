@@ -15,7 +15,7 @@
 
 getDataSet <- function(){
   #  读取api
-  res <- GET("localhost:8080/query")
+  res <- GET("http://39.108.91.24:8099/dataset/query")
   #  获取raw数据
   data_raw <- res$content
   #  raw转字符串

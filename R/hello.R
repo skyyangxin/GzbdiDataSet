@@ -25,7 +25,12 @@ getDataSet <- function(){
   #  转化为数据集
   da <- jsonlite::fromJSON(data)
   #  返回数据集
-  return(da)
+    return(da)
+}
+
+exportExcel <- function(data){
+  url <- getwd()
+  write.csv(data,file=paste(url,"data.csv",sep = '/'))
 }
 
 

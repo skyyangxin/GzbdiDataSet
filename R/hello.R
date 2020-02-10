@@ -50,7 +50,6 @@ exportExcel <- function(data){
 # name: 列名描述
 # 获取柱状图
 #' @title getHistogram
-#' @return
 #' @export
 #' @author hm
 getHistogram<-function(data,province){

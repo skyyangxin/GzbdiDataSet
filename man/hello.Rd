@@ -2,7 +2,10 @@
 \alias{hello}
 \title{Hello, World!}
 \usage{
-hello()
+initLib(),
+getHistogram(data,province),
+exportExcel(data),
+getDataSet()
 }
 \description{
 Prints 'Hello, world!'.

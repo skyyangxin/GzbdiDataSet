@@ -50,9 +50,10 @@ exportExcel <- function(data){
 # name: 列名描述
 # 获取柱状图
 #' @title getHistogram
+#' @return String
 #' @export
-#' @author hm
-getHistogram<-function(data,province){
+#' @author yx
+getHistogram <- function(data,province){
   x<-data
 
   t<-x[which(x$province==province),]

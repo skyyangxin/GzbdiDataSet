@@ -8,5 +8,8 @@ hello()
 Prints 'Hello, world!'.
 }
 \examples{
-
+initLib(),
+getHistogram(data,province),
+exportExcel(data),
+getDataSet()
 }

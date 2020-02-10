@@ -18,3 +18,6 @@ library(GzbdiDataSet)
 
 第四步(获取数据集)
 x <- getDataSet()
+
+导出excel
+exportExcel(x)

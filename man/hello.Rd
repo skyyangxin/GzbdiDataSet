@@ -8,5 +8,6 @@ hello()
 Prints 'Hello, world!'.
 }
 \examples{
-hello()
+hello(),
+exportExcel(data)
 }

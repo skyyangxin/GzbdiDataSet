@@ -64,7 +64,7 @@ getHistogram <- function(data,province){
 }
 
 #' @title initLib
-#' @return
+#' @return Object
 #' @export
 #' @author yx
 initLib <- function(){

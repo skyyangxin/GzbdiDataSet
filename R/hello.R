@@ -52,7 +52,7 @@ exportExcel <- function(data){
 #' @title getHistogram
 #' @return String
 #' @export
-#' @author yx
+#' @author hm
 getHistogram <- function(data,province){
   x<-data
 
@@ -61,4 +61,14 @@ getHistogram <- function(data,province){
   ggplot(t, aes(format(as.Date(time),format="%m-%d"), as.numeric(confirmed_num))) +
     geom_col(fill='firebrick') + theme_minimal(base_size = 14) +
     xlab(NULL) + ylab(NULL)+ggtitle(paste(province,'确诊数柱状图'))
+}
+
+#' @title initLib
+#' @return
+#' @export
+#' @author yx
+initLib <- function(){
+  library(httr)
+  library(rjson)
+  library(remotes)
 }

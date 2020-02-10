@@ -41,6 +41,7 @@ exportExcel <- function(data){
 # item：列名（如data中time）
 # name: 列名描述
 # 获取柱状图
+# 作者：hm
 getHistogram<-function(data,province){
   x<-data
 

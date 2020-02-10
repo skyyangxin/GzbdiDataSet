@@ -14,6 +14,10 @@
 #   Test Package:              'Ctrl + Shift + T'
 
 #获取数据集
+#' @title getDataSet
+#' @return da
+#' @export
+#' @author yx
 getDataSet <- function(){
   #  读取api
   res <- GET("http://39.108.91.24:8099/query")
@@ -30,6 +34,10 @@ getDataSet <- function(){
 }
 
 #导出excel
+#' @title exportExcel
+#' @return String
+#' @export
+#' @author yx
 exportExcel <- function(data){
   url <- getwd()
   write.csv(data,file=paste(url,"data.csv",sep = '/'))
@@ -41,7 +49,10 @@ exportExcel <- function(data){
 # item：列名（如data中time）
 # name: 列名描述
 # 获取柱状图
-# 作者：hm
+#' @title getHistogram
+#' @return
+#' @export
+#' @author hm
 getHistogram<-function(data,province){
   x<-data
 

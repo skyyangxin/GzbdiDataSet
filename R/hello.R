@@ -41,6 +41,7 @@ getDataSet <- function(){
 exportExcel <- function(data){
   url <- getwd()
   write.csv(data,file=paste(url,"data.csv",sep = '/'))
+  print(paste("文件保存地址：",url,"/data.csv",sep = "",collapse = ""))
   return('导出成功')
 }
 

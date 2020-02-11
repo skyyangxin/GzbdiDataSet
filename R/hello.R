@@ -61,7 +61,7 @@ getHistogram <- function(data,province){
 
   ggplot(t, aes(format(as.Date(time),format="%m-%d"), as.numeric(confirmed_num))) +
     geom_col(fill='firebrick') + theme_minimal(base_size = 14) +
-    xlab(NULL) + ylab(NULL)+ggtitle(paste(province,'确诊数柱状图'))
+    xlab(NULL) + ylab(NULL)+ggtitle(paste(province,'确诊数柱状图',sep = "",collapse = "")
 }
 
 #' @title initLib
@@ -75,3 +75,63 @@ initLib <- function(){
   library(ggplot2)
   return("包加载成功")
 }
+
+# 查看列名技巧描述
+#' @title getLine
+#' @return String
+#' @export
+#' @author yx
+viewColumeAnddescribe <- function(){
+  print("province 地区")
+  print("remove_observation_num 解除医学观察数")
+  print("touch_num 密切接触者数")
+  print("confirmed_num 累计确诊数")
+  print("severe_num 现有重症数")
+  print("accept_num 接受医学观察数")
+  print("time 发布日期")
+  print("cure_num 累计治愈数")
+  print("die_num 累计死亡数")
+}
+
+# 折线图
+#' @title getLine
+#' @return String
+#' @export
+#' @author yx
+getLine <- function(data,colume_name='confirmed_num',address='全部',startTime='',endTime=''){
+  if(address!='全部'){
+    # 筛选地区
+    data <- data[data$province==address,]
+  }
+  if(startTime!=''){
+    data <- data[data$time>=startTime,]
+  }
+  if(endTime!=''){
+    data <- data[data$time<=endTime,]
+  }
+  head(data)
+  #去掉科学计数
+  options(scipen=200)
+
+  gg <- switch (colume_name,
+    "remove_observation_num" = ggplot(data,aes(x=time,y=remove_observation_num,colour=province,group=province)),
+    "touch_num" = ggplot(data,aes(x=time,y=touch_num,colour=province,group=province)),
+    "severe_num" = ggplot(data,aes(x=time,y=severe_num,colour=province,group=province)),
+    "accept_num" = ggplot(data,aes(x=time,y=accept_num,colour=province,group=province)),
+    "cure_num" = ggplot(data,aes(x=time,y=cure_num,colour=province,group=province)),
+    "die_num " = ggplot(data,aes(x=time,y=die_num,colour=province,group=province)),
+    ggplot(data,aes(x=time,y=confirmed_num,colour=province,group=province))
+  )
+
+  desc <- switch(colume_name,
+                 "remove_observation_num"="解除医学观察数",
+                 "touch_num"="密切接触者数",
+                 "severe_num"="现有重症数",
+                 "accept_num"="接受医学观察数",
+                 "cure_num"="累计治愈数",
+                 "die_num"="累计死亡数",
+                 "累计确诊数"
+                 )
+  gg+geom_line()+xlab("时间")+ylab(desc)+ggtitle(paste(address,desc,"折线图",sep = "",collapse = ""))
+}
+

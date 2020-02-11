@@ -61,7 +61,7 @@ getHistogram <- function(data,province){
 
   ggplot(t, aes(format(as.Date(time),format="%m-%d"), as.numeric(confirmed_num))) +
     geom_col(fill='firebrick') + theme_minimal(base_size = 14) +
-    xlab(NULL) + ylab(NULL)+ggtitle(paste(province,'确诊数柱状图',sep = "",collapse = "")
+    xlab(NULL) + ylab(NULL)+ggtitle(paste(province,'确诊数柱状图',sep = "",collapse = ""))
 }
 
 #' @title initLib
@@ -77,7 +77,7 @@ initLib <- function(){
 }
 
 # 查看列名技巧描述
-#' @title getLine
+#' @title viewColumeAnddescribe
 #' @return String
 #' @export
 #' @author yx

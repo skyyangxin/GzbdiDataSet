@@ -142,15 +142,15 @@ editColumnName <- function(columnName){
   newColumnName <- c()
   for (i in columnName) {
     name <- switch (i,
-      "province" = "province 地区",
-      "remove_observation_num" = "remove_observation_num 解除医学观察数",
-      "touch_num" = "touch_num 密切接触者数",
-      "confirmed_num" = "confirmed_num 累计确诊数",
-      "severe_num" = "severe_num 现有重症数",
-      "accept_num" = "accept_num 接受医学观察数",
-      "time" = "time 发布日期",
-      "cure_num" = "cure_num 累计治愈数",
-      "die_num" = "die_num 累计死亡数"
+      "province" = "province(地区)",
+      "remove_observation_num" = "remove_observation_num(解除医学观察数)",
+      "touch_num" = "touch_num(密切接触者数)",
+      "confirmed_num" = "confirmed_num(累计确诊数)",
+      "severe_num" = "severe_num(现有重症数)",
+      "accept_num" = "accept_num(接受医学观察数)",
+      "time" = "time(发布日期)",
+      "cure_num" = "cure_num(累计治愈数)",
+      "die_num" = "die_num(累计死亡数)"
     )
     newColumnName[length(newColumnName)+1] <- name
   }

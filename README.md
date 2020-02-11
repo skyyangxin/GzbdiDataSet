@@ -27,5 +27,5 @@ viewColumeAnddescribe()
 
 获取折线图
 getLine(x)   全部地区确诊数/时间折线图
-getLine(data=res,colume_name = 'cure_num',address = '贵州',startTime = '2020-02-01',endTime = '2020-02-10') 筛选折线图
+getLine(data=x,colume_name = 'cure_num',address = '贵州',startTime = '2020-02-01',endTime = '2020-02-10') 筛选折线图
 

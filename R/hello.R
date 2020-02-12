@@ -168,7 +168,7 @@ editColumnName <- function(columnName){
 #' @return String
 #' @export
 #' @author yx
-getTd <- function(data,colume_name='confirmed_num',time=''){
+getTd <- function(data,colume_name='confirmed_num',time='',low="white",high="red"){
   #去掉科学计数
   options(scipen=200)
 
@@ -212,7 +212,7 @@ getTd <- function(data,colume_name='confirmed_num',time=''){
   )
   ggplot(china_data,aes(long,lat))+
     numPlot+
-    scale_fill_gradient(name=desc,low="white",high="red")+
+    scale_fill_gradient(name=desc,low=low,high=high)+
     coord_map("polyconic")+
     geom_text(aes(x=jd,y=wd,label=name),data=province_city,colour="black",size=2.5)+
     labs(title=paste(nowTime,desc,"热力图",seq="",collapse = ""))+
@@ -359,7 +359,7 @@ getEditProvince <- function(area){
 #' @return String
 #' @export
 #' @author yx
-getTdRatio <- function(data,colume_name='cure_num',time=''){
+getTdRatio <- function(data,colume_name='cure_num',time='',low="white",high="red"){
   #去掉科学计数
   options(scipen=200)
   url <- system.file("bou2_4p.shp", package="GzbdiDataSet")
@@ -401,7 +401,7 @@ getTdRatio <- function(data,colume_name='cure_num',time=''){
   )
   ggplot(china_data,aes(long,lat))+
     numPlot+
-    scale_fill_gradient(name=desc,low="white",high="red")+
+    scale_fill_gradient(name=desc,low=low,high=high)+
     coord_map("polyconic")+
     geom_text(aes(x=jd,y=wd,label=name),data=province_city,colour="black",size=2.5)+
     labs(title=paste(nowTime,desc,"热力图",seq="",collapse = ""))+
@@ -421,14 +421,7 @@ getTdRatio <- function(data,colume_name='cure_num',time=''){
 #' @return String
 #' @export
 #' @author yx
-getTdRatioCustom <- function(data,dividend=c(),divisor=c(),desc='',time = '',low="white",high="red"){
-
-  if(length(dividend)==0){
-    dividend <- data$cure_num
-  }
-  if(length(dividend)==0){
-    divisor <- data$confirmed_num
-  }
+getTdRatioCustom <- function(data,dividend,divisor,desc='比例',time = '',low="white",high="red"){
 
   data1 <- dividend/divisor
 
@@ -461,9 +454,6 @@ getTdRatioCustom <- function(data,dividend=c(),divisor=c(),desc='',time = '',low
 
   numPlot <- geom_polygon(aes(group=group,fill=newData),colour="grey",size=0.01)
 
-  if(desc==''){
-    desc <- "累计治愈数/累计确诊数"
-  }
   ggplot(china_data,aes(long,lat))+
     numPlot+
     scale_fill_gradient(name=desc,low=low,high=high)+

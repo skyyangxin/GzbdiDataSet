@@ -9,7 +9,11 @@ Imports:
   ggplot2,
   httr,
   rjson,
-  remotes
+  remotes,
+  mapdata,
+  maptools,
+  plyr,
+  mapproj
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true

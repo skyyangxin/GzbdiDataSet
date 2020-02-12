@@ -172,7 +172,7 @@ getTd <- function(data,colume_name='confirmed_num',time=''){
   #去掉科学计数
   options(scipen=200)
 
-  china_map <- readShapePoly(system.file("ditu/bou2_4p.shp", package="ditu"))
+  china_map <- readShapePoly(system.file("ditu/bou2_4p.shp", package="GzbdiDataSet"))
   x<-china_map@data
   xs<-data.frame(x,id=seq(0:924)-1)#地图中共计有925个地域信息
   china_map1<-fortify(china_map)
@@ -190,7 +190,7 @@ getTd <- function(data,colume_name='confirmed_num',time=''){
 
   china_data <- join(china_map_data, mydata, type="full")#基于NAME字段进行连接，NAME字段来自于地图文件中
 
-  province_city<-read.csv(system.file("ditu/pcity.csv", package="ditu"),header=T,as.is=T)#获取省会城市坐标
+  province_city<-read.csv(system.file("ditu/pcity.csv", package="GzbdiDataSet"),header=T,as.is=T)#获取省会城市坐标
 
   numPlot <- switch (colume_name,
              "remove_observation_num" = geom_polygon(aes(group=group,fill=remove_observation_num),colour="grey",size=0.01),

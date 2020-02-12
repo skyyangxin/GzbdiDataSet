@@ -414,3 +414,68 @@ getTdRatio <- function(data,colume_name='cure_num',time=''){
     )
 
 }
+
+
+# 热力图
+#' @title getTdRatioCustom
+#' @return String
+#' @export
+#' @author yx
+getTdRatioCustom <- function(data,dividend=c(),divisor=c(),desc='',time = '',low="white",high="red"){
+
+  if(length(dividend)==0){
+    dividend <- data$cure_num
+  }
+  if(length(dividend)==0){
+    divisor <- data$confirmed_num
+  }
+
+  data1 <- dividend/divisor
+
+  data[,length(data)+1] <- data1
+
+  names(data)[length(data)] <- "newData"
+
+  #去掉科学计数
+  options(scipen=200)
+  url <- system.file("bou2_4p.shp", package="GzbdiDataSet")
+  china_map <- readShapePoly(url)
+  x<-china_map@data
+  xs<-data.frame(x,id=seq(0:924)-1)#地图中共计有925个地域信息
+  china_map1<-fortify(china_map)
+  china_map_data<-join(china_map1,xs,type="full")#基于id进行连接
+  #unique(china_map@data$NAME)#查看地图数据中保存的地域名称，编辑自己的数据与其一致
+
+  mydata <- getChinaData(data)
+  names(mydata)[1] <- "NAME"
+  # 筛选时间
+  nowTime <- time
+  if(time==''){
+    nowTime <- format(Sys.time(),format = "%Y-%m-%d")
+  }
+  mydata <- mydata[mydata$time==nowTime,]
+
+  china_data <- join(china_map_data, mydata, type="full")#基于NAME字段进行连接，NAME字段来自于地图文件中
+
+  province_city<-read.csv(system.file("pcity.csv", package="GzbdiDataSet"),header=T,as.is=T)#获取省会城市坐标
+
+  numPlot <- geom_polygon(aes(group=group,fill=newData),colour="grey",size=0.01)
+
+  if(desc==''){
+    desc <- "累计治愈数/累计确诊数"
+  }
+  ggplot(china_data,aes(long,lat))+
+    numPlot+
+    scale_fill_gradient(name=desc,low=low,high=high)+
+    coord_map("polyconic")+
+    geom_text(aes(x=jd,y=wd,label=name),data=province_city,colour="black",size=2.5)+
+    labs(title=paste(nowTime,desc,"热力图",seq="",collapse = ""))+
+    theme(
+      panel.grid=element_blank(),
+      panel.background=element_blank(),
+      axis.text=element_blank(),
+      axis.ticks=element_blank(),
+      axis.title=element_blank()
+    )
+
+}

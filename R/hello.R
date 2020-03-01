@@ -20,7 +20,7 @@
 #' @author yx
 getDataSet <- function(){
   #  读取api
-  res <- GET("http://39.108.91.24:8099/query")
+  res <- GET("http://119.23.217.160:8099/query")
   #  获取raw数据
   data_raw <- res$content
   #  raw转字符串

@@ -6,7 +6,7 @@
 install.packages("remotes")
 
 第二步
-library(remotes)
+library(remotes) 
 
 第三步(拉取包和初始化环境)
 remotes::install_github("skyyangxin/GzbdiDataSet")
